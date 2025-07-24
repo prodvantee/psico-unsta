@@ -2,49 +2,42 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Malla Interactiva Psicología UNSTA</title>
+  <title>Psicología UNSTA</title>
   <style>
-    :root {
-      --lila: #e1bee7;
-      --violeta: #9575cd;
-      --celeste: #b3e5fc;
-      --rosa-lavanda: #ce93d8;
-      --gris: #c9c9c9;
-    }
-
-    body {
+  body {
       font-family: 'Segoe UI', sans-serif;
       background: #fce4ec;
-      color: #4a148c;
       margin: 0;
-      padding: 20px;
+      padding: 30px;
+      color: #4a148c;
     }
 
     h1 {
       text-align: center;
       font-size: 28px;
       color: #ad1457;
+      margin-bottom: 10px;
     }
 
     .container {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
-      margin-top: 30px;
+      gap: 20px;
+      flex-wrap: nowrap;
+      padding-top: 20px;
     }
 
     .anio {
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.4);
       border-radius: 12px;
-      padding: 16px;
-      width: 220px;
+      padding: 20px;
+      width: 200px;
       box-shadow: 0 0 6px rgba(0,0,0,0.1);
     }
 
     .anio h2 {
       text-align: center;
-      font-size: 18px;
+      font-size: 16px;
       color: #d81b60;
       margin-bottom: 12px;
       border-bottom: 1px solid #f8bbd0;
@@ -52,14 +45,13 @@
     }
 
     .materia {
-      background: var(--lila);
+      background: #e1bee7;
       border: 2px solid #a678f2;
       border-radius: 10px;
       padding: 10px;
       margin-bottom: 10px;
       font-weight: 500;
       text-align: center;
-      cursor: pointer;
       transition: background 0.3s, transform 0.2s;
     }
 
@@ -68,11 +60,73 @@
       transform: scale(1.03);
     }
 
-    .cursando { background: var(--celeste); color: #004d60; }
-    .aprobada { background: var(--violeta); color: #fff; }
-    .bloqueada { background: var(--gris); color: #5a5a5a; cursor: not-allowed; }
-    .parcial { background: var(--rosa-lavanda); color: #4a148c; }
+    .cursando {
+      background: #b3e5fc;
+      color: #004d60;
+    }
 
+    .aprobada {
+      background: #9575cd;
+      color: #fff;
+    }
+
+    .bloqueada {
+      background: #c9c9c9;
+      color: #5a5a5a;
+      cursor: not-allowed;
+    }
+
+    .parcial {
+      background: #ce93d8;
+      color: #4a148c;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1e1e2f;
+        color: #eee;
+      }
+
+      .anio {
+        background: rgba(255,255,255,0.07);
+        box-shadow: 0 0 8px rgba(0,0,0,0.6);
+      }
+
+      .anio h2 {
+        color: #d1b3ff;
+        border-bottom: 1px solid #4e3b68;
+      }
+
+      .materia {
+        background: #4b3869;
+        border-color: #a678f2;
+        color: #eee;
+      }
+
+      .materia:hover {
+        background: #6b4b8b;
+      }
+
+      .cursando {
+        background: #368db9;
+        color: #e0f7fa;
+      }
+
+      .aprobada {
+        background: #7c4dff;
+        color: white;
+      }
+
+      .bloqueada {
+        background: #3e3e3e;
+        color: #aaa;
+      }
+
+      .parcial {
+        background: #9c27b0;
+        color: #f3e5f5;
+      }
+    }
     button {
       margin: 30px auto 10px;
       display: block;
@@ -123,7 +177,7 @@
   </style>
 </head>
 <body>
-  <h1>Malla Interactiva Psicología UNSTA</h1>
+  <h1>Psicología - UNSTA</h1>
 
   <div class="container">
     <!-- 1° Año -->
