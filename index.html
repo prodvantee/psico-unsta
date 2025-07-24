@@ -1,36 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Malla Interactiva</title>
+  <meta charset="UTF-8" />
+  <title>Psicología UNSTA</title>
   <style>
-    body {
-      background-color: #1e1e2f;
-      color: white;
-      font-family: sans-serif;
+  body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fce4ec;
+      margin: 0;
+      padding: 30px;
+      color: #4a148c;
     }
 
-    .contenedor {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      color: #ad1457;
+      margin-bottom: 10px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: nowrap;
+      padding-top: 20px;
+    }
+
+    .anio {
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 12px;
       padding: 20px;
+      width: 200px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    }
+
+    .anio h2 {
+      text-align: center;
+      font-size: 16px;
+      color: #d81b60;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #f8bbd0;
+      padding-bottom: 5px;
     }
 
     .materia {
+      background: #e1bee7;
+      border: 2px solid #a678f2;
+      border-radius: 10px;
       padding: 10px;
+      margin-bottom: 10px;
+      font-weight: 500;
       text-align: center;
-      border-radius: 8px;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
 
-    .pendiente { background-color: #444; }
-    .cursando { background-color: #6a5acd; }
-    .aprobada { background-color: #9b59b6; }
-    .bloqueada { background-color: #333; opacity: 0.4; cursor: not-allowed; }
-    .parcial { background-color: #8e44ad; }
+    .materia:hover {
+      background: #d8afe9;
+      transform: scale(1.03);
+    }
+
+    .cursando {
+      background: #b3e5fc;
+      color: #004d60;
+    }
+
+    .aprobada {
+      background: #9575cd;
+      color: #fff;
+    }
+
+    .bloqueada {
+      background: #c9c9c9;
+      color: #5a5a5a;
+      cursor: not-allowed;
+    }
+
+    .parcial {
+      background: #ce93d8;
+      color: #4a148c;
+    }
 
     @media (prefers-color-scheme: dark) {
       body {
@@ -58,11 +107,6 @@
         background: #6b4b8b;
       }
 
-      .pendiente {
-        background: #5e35b1;
-        color: #e1bee7;
-      }
-
       .cursando {
         background: #368db9;
         color: #e0f7fa;
@@ -83,7 +127,6 @@
         color: #f3e5f5;
       }
     }
-
     button {
       margin: 30px auto 10px;
       display: block;
@@ -99,17 +142,99 @@
     button:hover {
       background: #5a4b81;
     }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1e1e2f;
+        color: #eee;
+      }
+
+      .anio {
+        background: rgba(255,255,255,0.07);
+        box-shadow: 0 0 8px rgba(0,0,0,0.6);
+      }
+
+      .anio h2 {
+        color: #d1b3ff;
+        border-bottom: 1px solid #4e3b68;
+      }
+
+      .materia {
+        background: #4b3869;
+        border-color: #a678f2;
+        color: #eee;
+      }
+
+      .materia:hover {
+        background: #6b4b8b;
+      }
+
+      .cursando { background: #368db9; color: #e0f7fa; }
+      .aprobada { background: #7c4dff; color: #fff; }
+      .bloqueada { background: #3e3e3e; color: #aaa; }
+      .parcial { background: #9c27b0; color: #f3e5f5; }
+    }
   </style>
 </head>
 <body>
   <h1>Psicología - UNSTA</h1>
 
   <div class="container">
+    <!-- 1° Año -->
+    <div class="anio">
+      <h2>1° Año</h2>
+      <div class="materia" data-id="filosofia">Filosofía</div>
+      <div class="materia" data-id="psicologia_general">Psicología General</div>
+      <div class="materia" data-id="neurociencias_1">Neurociencias I</div>
+      <div class="materia" data-id="neurociencias_2" data-correlativas="neurociencias_1">Neurociencias II</div>
+      <div class="materia" data-id="antropologia_sociocultural">Antropología Sociocultural</div>
+      <div class="materia" data-id="psicoestadistica">Psicoestadística</div>
+      <div class="materia" data-id="historia_psicologia">Historia de la Psicología</div>
+    </div>
+
+    <!-- 2° Año -->
+    <div class="anio">
+      <h2>2° Año</h2>
+      <div class="materia" data-id="psicologia_desarrollo_1" data-correlativas="psicologia_general">Psicología del Desarrollo I</div>
+      <div class="materia" data-id="psicologia_social" data-correlativas="psicologia_general">Psicología Social</div>
+      <div class="materia" data-id="psicologia_religion">Psicología de la Religión</div>
+      <div class="materia" data-id="teologia_dogmatica">Teología Dogmática</div>
+      <div class="materia" data-id="salud_publica" data-correlativas="psicologia_general">Salud Pública</div>
+      <div class="materia" data-id="dinamica_procesos" data-correlativas="psicologia_general">Dinámica de los Procesos Psíquicos</div>
+      <div class="materia" data-id="antropologia_filosofica" data-correlativas="filosofia">Antropología Filosófica</div>
+      <div class="materia" data-id="sociologia" data-correlativas="antropologia_sociocultural">Sociología</div>
+    </div>
+
+    <!-- 3° Año -->
+    <div class="anio">
+      <h2>3° Año</h2>
+      <div class="materia" data-id="psicopatologia_1" data-correlativas="neurociencias_2,dinamica_procesos">Psicopatología I</div>
+      <div class="materia" data-id="psicologia_personalidad" data-correlativas="psicologia_desarrollo_1">Psicología de la Personalidad</div>
+      <div class="materia" data-id="psicologia_desarrollo_2" data-correlativas="psicologia_desarrollo_1">Psicología del Desarrollo II</div>
+      <div class="materia" data-id="teologia_moral">Teología Moral</div>
+      <div class="materia" data-id="exploracion_1" data-correlativas="psicologia_desarrollo_1,dinamica_procesos">Tec. de Exploración Psicológica I</div>
+      <div class="materia" data-id="epistemologia" data-correlativas="historia_psicologia">Epistemología</div>
+      <div class="materia" data-id="metodologia" data-correlativas="psicoestadistica">Metodología de la Investigación</div>
+      <div class="materia" data-id="clinica_discapacidad" data-correlativas="psicologia_desarrollo_1">Clínica de la Discapacidad</div>
+    </div>
+
+    <!-- 4° Año -->
+    <div class="anio">
+      <h2>4° Año</h2>
+      <div class="materia" data-id="psicologia_educacional" data-correlativas="psicologia_desarrollo_2">Psicología Educacional</div>
+      <div class="materia" data-id="juridica_forense" data-correlativas="exploracion_1,psicopatologia_1">Psicología Jurídica y Forense</div>
+      <div class="materia" data-id="psicologia_laboral">Psic. Laboral y Organizacional</div>
+      <div class="materia" data-id="psicologia_salud">Psicología de la Salud</div>
+      <div class="materia" data-id="exploracion_2" data-correlativas="exploracion_1,psicologia_personalidad">Tec. de Exploración Psicológica II</div>
+      <div class="materia" data-id="psicologia_clinica" data-correlativas="psicologia_personalidad,psicopatologia_1">Psicología Clínica</div>
+      <div class="materia" data-id="psicopatologia_2" data-correlativas="psicopatologia_1">Psicopatología II</div>
+      <div class="materia" data-id="infanto_juvenil" data-correlativas="psicopatologia_1">Psicopatología Infanto Juvenil</div>
+    </div>
   </div>
 
- <button onclick="reiniciar()">Reiniciar progreso</button>
+  <button onclick="reiniciar()">Reiniciar progreso</button>
 
-<script>
+  <script>
     const estados = ["pendiente", "cursando", "aprobada"];
 
     function cambiarEstado(el) {
@@ -118,14 +243,6 @@
       let actual = localStorage.getItem(el.dataset.id) || "pendiente";
       let nuevo = estados[(estados.indexOf(actual) + 1) % estados.length];
       localStorage.setItem(el.dataset.id, nuevo);
-
-      el.classList.remove("pendiente", "cursando", "aprobada", "parcial", "bloqueada");
-      el.classList.add(nuevo);
-
-      el.style.display = "none";
-      el.offsetHeight;
-      el.style.display = "";
-
       actualizarBloqueos();
     }
 
@@ -164,3 +281,4 @@
   </script>
 </body>
 </html>
+   
