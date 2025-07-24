@@ -168,58 +168,58 @@
  <button onclick="reiniciar()">Reiniciar progreso</button>
 
 <script>
-  const estados = ["pendiente", "cursando", "aprobada"];
+    const estados = ["pendiente", "cursando", "aprobada"];
 
-  function cambiarEstado(el) {
-    if (el.classList.contains("bloqueada")) return;
+    function cambiarEstado(el) {
+      if (el.classList.contains("bloqueada")) return;
 
-    let actual = localStorage.getItem(el.dataset.id) || "pendiente";
-    let nuevo = estados[(estados.indexOf(actual) + 1) % estados.length];
-    localStorage.setItem(el.dataset.id, nuevo);
+      let actual = localStorage.getItem(el.dataset.id) || "pendiente";
+      let nuevo = estados[(estados.indexOf(actual) + 1) % estados.length];
+      localStorage.setItem(el.dataset.id, nuevo);
 
-    // Actualizo clase
-    el.classList.remove("pendiente", "cursando", "aprobada", "parcial", "bloqueada");
-    el.classList.add(nuevo);
+      el.classList.remove("pendiente", "cursando", "aprobada", "parcial", "bloqueada");
+      el.classList.add(nuevo);
 
-    // Forzar repintado en móviles
-    el.style.display = "none";
-    el.offsetHeight; // fuerza reflow
-    el.style.display = "";
+      // Forzar repintado en móviles
+      el.style.display = "none";
+      el.offsetHeight;
+      el.style.display = "";
 
-    // Actualizar correlativas
-    actualizarBloqueos();
-  }
-
-  function actualizarBloqueos() {
-    document.querySelectorAll(".materia").forEach(el => {
-      const id = el.dataset.id;
-      const saved = localStorage.getItem(id);
-
-      if (el.dataset.correlativas) {
-        const requisitos = el.dataset.correlativas.split(",");
-        const aprobadas = requisitos.filter(r => localStorage.getItem(r) === "aprobada");
-
-        if (aprobadas.length === requisitos.length) {
-          el.className = "materia " + (saved || "pendiente");
-        } else if (aprobadas.length > 0) {
-          el.className = "materia parcial";
-        } else {
-          el.className = "materia bloqueada";
-        }
-      } else {
-        el.className = "materia " + (saved || "pendiente");
-      }
-
-      el.onclick = () => cambiarEstado(el);
-    });
-  }
-
-  function reiniciar() {
-    if (confirm("¿Seguro que querés reiniciar tu progreso?")) {
-      localStorage.clear();
-      location.reload();
+      actualizarBloqueos();
     }
-  }
 
-  window.onload = actualizarBloqueos;
-</script>
+    function actualizarBloqueos() {
+      document.querySelectorAll(".materia").forEach(el => {
+        const id = el.dataset.id;
+        const saved = localStorage.getItem(id);
+
+        if (el.dataset.correlativas) {
+          const requisitos = el.dataset.correlativas.split(",");
+          const aprobadas = requisitos.filter(r => localStorage.getItem(r) === "aprobada");
+
+          if (aprobadas.length === requisitos.length) {
+            el.className = "materia " + (saved || "pendiente");
+          } else if (aprobadas.length > 0) {
+            el.className = "materia parcial";
+          } else {
+            el.className = "materia bloqueada";
+          }
+        } else {
+          el.className = "materia " + (saved || "pendiente");
+        }
+
+        el.onclick = () => cambiarEstado(el);
+      });
+    }
+
+    function reiniciar() {
+      if (confirm("¿Seguro que querés reiniciar tu progreso?")) {
+        localStorage.clear();
+        location.reload();
+      }
+    }
+
+    window.onload = actualizarBloqueos;
+  </script>
+</body>
+</html>
