@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Psicología UNSTA</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fce4ec;
+      margin: 0;
+      padding: 30px;
+      color: #4a148c;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      color: #ad1457;
+      margin-bottom: 10px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: nowrap;
+      padding-top: 20px;
+    }
+
+    .anio {
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 12px;
+      padding: 20px;
+      width: 200px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    }
+
+    .anio h2 {
+      text-align: center;
+      font-size: 16px;
+      color: #d81b60;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #f8bbd0;
+      padding-bottom: 5px;
+    }
+
+    .materia {
+      background: #e1bee7;
+      border: 2px solid #a678f2;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .materia:hover {
+      background: #d8afe9;
+      transform: scale(1.03);
+    }
+
+    .cursando {
+      background: #b3e5fc;
+      color: #004d60;
+    }
+
+    .aprobada {
+      background: #9575cd;
+      color: #fff;
+    }
+
+    .bloqueada {
+      background: #c9c9c9;
+      color: #5a5a5a;
+      cursor: not-allowed;
+    }
+
+    .parcial {
+      background: #ce93d8;
+      color: #4a148c;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1e1e2f;
+        color: #eee;
+      }
+
+      .anio {
+        background: rgba(255,255,255,0.07);
+        box-shadow: 0 0 8px rgba(0,0,0,0.6);
+      }
+
+      .anio h2 {
+        color: #d1b3ff;
+        border-bottom: 1px solid #4e3b68;
+      }
+
+      .materia {
+        background: #4b3869;
+        border-color: #a678f2;
+        color: #eee;
+      }
+
+      .materia:hover {
+        background: #6b4b8b;
+      }
+
+      .cursando {
+        background: #368db9;
+        color: #e0f7fa;
+      }
+
+      .aprobada {
+        background: #7c4dff;
+        color: white;
+      }
+
+      .bloqueada {
+        background: #3e3e3e;
+        color: #aaa;
+      }
+
+      .parcial {
+        background: #9c27b0;
+        color: #f3e5f5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Psicología - UNSTA</h1>
+
+  <div class="container">
+    <div class="anio">
+      <h2>1° Año</h2>
+      <div class="materia" data-id="psicologia_general" onclick="cambiarEstado(this)">Psicología General</div>
+      <div class="materia" data-id="neurociencias_1" onclick="cambiarEstado(this)">Neurociencias I</div>
+      <div class="materia bloqueada" data-id="neurociencias_2" data-correlativas="neurociencias_1" onclick="cambiarEstado(this)">Neurociencias II</div>
+      <div class="materia" data-id="filosofia" onclick="cambiarEstado(this)">Filosofía</div>
+      <div class="materia" data-id="historia" onclick="cambiarEstado(this)">Historia de la Psicología</div>
+      <div class="materia" data-id="psicoestadistica" onclick="cambiarEstado(this)">Psicoestadística</div>
+      <div class="materia" data-id="antropologia_sociocultural" onclick="cambiarEstado(this)">Antropología Sociocultural</div>
+    </div>
+
+    <div class="anio">
+      <h2>2° Año</h2>
+      <div class="materia bloqueada" data-id="psico_desarrollo_1" data-correlativas="psicologia_general" onclick="cambiarEstado(this)">Psicología del Desarrollo I</div>
+      <div class="materia bloqueada" data-id="psico_social" data-correlativas="psicologia_general" onclick="cambiarEstado(this)">Psicología Social</div>
+      <div class="materia bloqueada" data-id="sociologia" data-correlativas="antropologia_sociocultural" onclick="cambiarEstado(this)">Sociología</div>
+      <div class="materia" data-id="psico_religion" onclick="cambiarEstado(this)">Psicología de la Religión</div>
+      <div class="materia bloqueada" data-id="salud_publica" data-correlativas="psicologia_general" onclick="cambiarEstado(this)">Salud Pública</div>
+      <div class="materia bloqueada" data-id="dinamica_psiquica" data-correlativas="psicologia_general" onclick="cambiarEstado(this)">Dinámica de los Procesos Psíquicos</div>
+      <div class="materia bloqueada" data-id="antropologia_filosofica" data-correlativas="filosofia" onclick="cambiarEstado(this)">Antropología Filosófica</div>
+      <div class="materia" data-id="teologia_dogmatica" onclick="cambiarEstado(this)">Teología Dogmática</div>
+    </div>
+
+    <div class="anio">
+      <h2>3° Año</h2>
+      <div class="materia bloqueada" data-id="psicopatologia_1" data-correlativas="neurociencias_2,dinamica_psiquica" onclick="cambiarEstado(this)">Psicopatología I</div>
+      <div class="materia bloqueada" data-id="psicologia_personalidad" data-correlativas="psico_desarrollo_1" onclick="cambiarEstado(this)">Psicología de la Personalidad</div>
+      <div class="materia bloqueada" data-id="desarrollo_2" data-correlativas="psico_desarrollo_1" onclick="cambiarEstado(this)">Psicología del Desarrollo II</div>
+      <div class="materia bloqueada" data-id="exploracion_1" data-correlativas="psico_desarrollo_1,dinamica_psiquica" onclick="cambiarEstado(this)">Téc. de Exploración Psicológica I</div>
+      <div class="materia bloqueada" data-id="epistemologia" data-correlativas="historia" onclick="cambiarEstado(this)">Epistemología</div>
+      <div class="materia bloqueada" data-id="metodologia" data-correlativas="psicoestadistica" onclick="cambiarEstado(this)">Metodología de la Investigación</div>
+      <div class="materia bloqueada" data-id="clinica_discapacidad" data-correlativas="psico_desarrollo_1" onclick="cambiarEstado(this)">Clínica de la Discapacidad</div>
+      <div class="materia" data-id="teologia_moral" onclick="cambiarEstado(this)">Teología Moral</div>
+    </div>
+
+    <div class="anio">
+      <h2>4° Año</h2>
+      <div class="materia bloqueada" data-id="educacional" data-correlativas="desarrollo_2" onclick="cambiarEstado(this)">Psicología Educacional</div>
+      <div class="materia bloqueada" data-id="juridica" data-correlativas="exploracion_1,psicopatologia_1" onclick="cambiarEstado(this)">Psicología Jurídica y Forense</div>
+      <div class="materia" data-id="laboral" onclick="cambiarEstado(this)">Psicología Laboral y Organizacional</div>
+      <div class="materia" data-id="salud" onclick="cambiarEstado(this)">Psicología de la Salud</div>
+      <div class="materia bloqueada" data-id="exploracion_2" data-correlativas="exploracion_1,psicologia_personalidad" onclick="cambiarEstado(this)">Téc. de Exploración Psicológica II</div>
+      <div class="materia bloqueada" data-id="psicologia_clinica" data-correlativas="psicologia_personalidad,psicopatologia_1" onclick="cambiarEstado(this)">Psicología Clínica</div>
+      <div class="materia bloqueada" data-id="psicopatologia_2" data-correlativas="psicopatologia_1" onclick="cambiarEstado(this)">Psicopatología II</div>
+      <div class="materia bloqueada" data-id="psico_infanto" data-correlativas="psicopatologia_1" onclick="cambiarEstado(this)">Psicopatología Infanto Juvenil</div>
+    </div>
+  </div>
+
+  <script>
+    const estados = ["pendiente", "cursando", "aprobada"];
+
+    function cambiarEstado(el) {
+      if (el.classList.contains("bloqueada")) return;
+
+      for (let estado of estados.concat("parcial")) el.classList.remove(estado);
+
+      let actual = localStorage.getItem(el.dataset.id) || "pendiente";
+      let nuevo = estados[(estados.indexOf(actual) + 1) % estados.length];
+
+      el.classList.add(nuevo);
+      localStorage.setItem(el.dataset.id, nuevo);
+      actualizarBloqueos();
+    }
+
+    function actualizarBloqueos() {
+      document.querySelectorAll(".materia").forEach(el => {
+        if (el.dataset.correlativas) {
+          const reqs = el.dataset.correlativas.split(",");
+          const aprobadas = reqs.filter(id => localStorage.getItem(id) === "aprobada");
+
+          for (let estado of estados.concat("parcial")) el.classList.remove(estado);
+
+          if (aprobadas.length === reqs.length) {
+            const saved = localStorage.getItem(el.dataset.id);
+            el.classList.remove("bloqueada");
+            el.classList.add(saved || "pendiente");
+          } else if (aprobadas.length > 0) {
+            el.classList.remove("bloqueada");
+            el.classList.add("parcial");
+          } else {
+            el.classList.add("bloqueada");
+          }
+        } else {
+          const saved = localStorage.getItem(el.dataset.id);
+          if (saved) {
+            for (let estado of estados.concat("parcial")) el.classList.remove(estado);
+            el.classList.add(saved);
+          }
+        }
+      });
+    }
+
+    window.onload = actualizarBloqueos;
+  </script>
+</body>
+</html>
